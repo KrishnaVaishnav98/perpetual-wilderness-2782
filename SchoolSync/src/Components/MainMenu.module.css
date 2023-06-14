@@ -1,0 +1,11 @@
+.mainmenu :hover {
+   background-color: #8978f8;
+}
+
+.logo {
+   position: sticky;
+}
+
+.profile {
+   position: sticky;
+}

@@ -1,0 +1,112 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "assignments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "events": [
+    {
+      "name": "Annual Sports Day",
+      "date": "2023-02-10",
+      "time": "09:00 AM - 02:00 PM",
+      "location": "School Ground",
+      "description": "Annual sports event featuring various athletic competitions and team games."
+    },
+    {
+      "name": "Science Exhibition",
+      "date": "2023-03-15",
+      "time": "10:00 AM - 01:00 PM",
+      "location": "School Auditorium",
+      "description": "Showcasing science projects and experiments by students from different grades."
+    },
+    {
+      "name": "Parent-Teacher Meeting",
+      "date": "2023-04-20",
+      "time": "03:00 PM - 05:00 PM",
+      "location": "School Classrooms",
+      "description": "Meeting between parents and teachers to discuss students' progress and address concerns."
+    },
+    {
+      "name": "Annual Day Celebration",
+      "date": "2023-05-05",
+      "time": "05:00 PM - 08:00 PM",
+      "location": "School Auditorium",
+      "description": "A grand cultural event showcasing performances by students, including music, dance, and drama."
+    },
+    {
+      "name": "Inter-School Quiz Competition",
+      "date": "2023-06-10",
+      "time": "09:00 AM - 12:00 PM",
+      "location": "School Assembly Hall",
+      "description": "A competitive quiz event where students from different schools participate to test their knowledge."
+    },
+    {
+      "name": "Career Guidance Seminar",
+      "date": "2023-08-18",
+      "time": "10:30 AM - 12:30 PM",
+      "location": "School Seminar Room",
+      "description": "An informative seminar for students, providing insights into different career paths and opportunities."
+    },
+    {
+      "name": "Art and Craft Exhibition",
+      "date": "2023-09-23",
+      "time": "09:00 AM - 03:00 PM",
+      "location": "School Art Gallery",
+      "description": "Displaying artwork and craft creations by students, showcasing their creativity and talent."
+    },
+    {
+      "name": "Annual Science Fair",
+      "date": "2023-11-12",
+      "time": "11:00 AM - 02:00 PM",
+      "location": "School Science Labs",
+      "description": "A science fair featuring innovative science projects and experiments by students."
+    }
+  ],
+  "holidays": [
+    {
+      "name": "New Year's Day",
+      "date": "2023-01-01"
+    },
+    {
+      "name": "Republic Day",
+      "date": "2023-01-26"
+    },
+    {
+      "name": "Holi",
+      "date": "2023-03-02"
+    },
+    {
+      "name": "Good Friday",
+      "date": "2023-04-07"
+    },
+    {
+      "name": "Eid al-Fitr",
+      "date": "2023-05-26"
+    },
+    {
+      "name": "Independence Day",
+      "date": "2023-08-15"
+    },
+    {
+      "name": "Gandhi Jayanti",
+      "date": "2023-10-02"
+    },
+    {
+      "name": "Diwali",
+      "date": "2023-10-19"
+    },
+    {
+      "name": "Christmas",
+      "date": "2023-12-25"
+    }
+  ]
+}
