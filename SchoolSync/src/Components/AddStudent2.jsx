@@ -54,7 +54,7 @@ function AddStudent2({ formData, handleChange, handleStep }) {
             </FormControl>
 
 
-            <Button color={"purple"} variant={"outline"} onClick={() => (handleStep(-1))}>Prev</Button>
+            <Button color={"blue.600"} variant={"outline"} onClick={() => (handleStep(-1))}>Prev</Button>
         </Box>
     )
 }

@@ -42,7 +42,7 @@ function AddTeacher2({ formData, handleChange, handleStep }) {
                     type="email" placeholder='Educational Qualification' />
             </FormControl>
 
-            <Button color={"purple"} variant={"outline"} onClick={() => (handleStep(-1))}>Prev</Button>
+            <Button color={"blue.600"} variant={"outline"} onClick={() => (handleStep(-1))}>Prev</Button>
         </Box>
     )
 }

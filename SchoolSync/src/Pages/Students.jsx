@@ -48,7 +48,7 @@ function Students() {
 
     const fetchDataFromFirestore = () => {
 
-        const collectionRef = firebase.firestore().collection('users');
+        const collectionRef = firebase.firestore().collection('students');
 
         collectionRef
             .get()
@@ -98,7 +98,7 @@ function Students() {
 
         const addDataToFirestore = () => {
             try {
-                const collectionRef = firebase.firestore().collection('users');
+                const collectionRef = firebase.firestore().collection('students');
                 let id = formData.name.split(" ")
 
                 collectionRef.add({
@@ -108,6 +108,7 @@ function Students() {
                 })
                     .then((docRef) => {
                         fetchDataFromFirestore()
+                        setFormData(initData)
                         console.log('Document added with ID: ', docRef.id);
                     })
                     .catch((error) => {
