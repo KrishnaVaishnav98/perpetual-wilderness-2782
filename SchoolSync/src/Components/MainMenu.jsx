@@ -30,7 +30,7 @@ function MainMenu() {
 
 
     return (
-        <Box bgColor={"#6B56F6"} w="270px" borderRadius={"20px"} >
+        <Box position={"sticky"} top={"0px"} bgColor={"#6B56F6"} w="270px" borderRadius={"20px"} >
             <Link to="/dashboard">
                 <Box bgColor={"#6B56F6"} pt="30px" w="270px" borderRadius={"15px"} className='logo' >
                     <Image

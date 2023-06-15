@@ -41,7 +41,7 @@ function AddStudent1({ formData, handleChange, handleStep }) {
                     type="date" placeholder='Birth date' />
             </FormControl>
 
-            <Button color={"purple"} variant={"outline"} onClick={() => (handleStep(1))}>Next</Button>
+            <Button color={"blue.600"} variant={"outline"} onClick={() => (handleStep(1))}>Next</Button>
 
 
         </Box>

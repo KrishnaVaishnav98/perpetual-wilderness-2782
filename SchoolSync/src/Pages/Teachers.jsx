@@ -1,5 +1,5 @@
 import MainMenu from "../Components/MainMenu";
-import { Box, Flex, Text, Divider, Button, FormLabel, FormControl, Input } from '@chakra-ui/react'
+import { Box, Flex, Text, Divider, Button, SimpleGrid, FormControl, Input } from '@chakra-ui/react'
 import Navbar from "../Components/Navbar";
 import AddTeacher1 from "../Components/AddTeacher1";
 import AddTeacher2 from "../Components/AddTeacher2";
@@ -7,16 +7,9 @@ import TeachersCard from "../Components/TeachersCard";
 import React, { useEffect } from 'react';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/firestore';
-
-
 import { useState } from "react";
 import {
-    Modal,
-    ModalOverlay,
-    ModalContent,
-    ModalHeader,
-    ModalFooter,
-    ModalBody,
+    Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody,
     ModalCloseButton,
     useDisclosure
 } from '@chakra-ui/react'
@@ -49,7 +42,7 @@ function Teachers() {
 
     const fetchDataFromFirestore = () => {
 
-        const collectionRef = firebase.firestore().collection('users');
+        const collectionRef = firebase.firestore().collection('teachers');
 
         collectionRef
             .get()
@@ -90,6 +83,7 @@ function Teachers() {
 
             if (formData.email && formData.education && formData.birthDate && formData.name && formData.phone && formData.subject && formData.address && formData.class && formData.gender) {
                 addDataToFirestore()
+                setFormData(initData)
                 alert("data added successfully")
             } else {
                 alert("Please fill all required details")
@@ -100,7 +94,7 @@ function Teachers() {
 
         const addDataToFirestore = () => {
             try {
-                const collectionRef = firebase.firestore().collection('users');
+                const collectionRef = firebase.firestore().collection('teachers');
                 let id = formData.name.split(" ")
 
                 collectionRef.add({
@@ -122,7 +116,7 @@ function Teachers() {
 
 
 
-        console.log("userData", userData)
+        console.log("teacher", userData)
 
         return (
             <>
@@ -173,7 +167,13 @@ function Teachers() {
                     </Box>
                 </Flex>
                 <Box>
-                    <TeachersCard></TeachersCard>
+                    <SimpleGrid spacing={4} templateColumns='repeat(3, 1fr)' ml="20px" >
+                        {
+                            userData.map((item, index) => (
+                                <TeachersCard key={index} data={item}></TeachersCard>
+                            ))
+                        }
+                    </SimpleGrid>
                 </Box>
             </Box>
 
