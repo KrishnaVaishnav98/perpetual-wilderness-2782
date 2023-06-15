@@ -6,28 +6,28 @@ const obj = {
     isAuth: false,
     loading: false,
     error: null,
-    token: "",
+    role: "",
     data: []
 }
 
 export default function AuthContextProvider({ children }) {
 
     const [isAuth, setIsAuth] = useState(obj.isAuth);
-    const [token, setToken] = useState(obj.token)
+    const [role, setRole] = useState(obj.role)
 
     const logIn = (token) => {
         setIsAuth(true);
-        setToken(token);
+        setRole(token);
     }
     const logOut = () => {
         setIsAuth(false);
-        setToken("");
+        setRole("");
     }
 
     return (
         <div>
 
-            <Authcontext.Provider value={{ isAuth, token, logIn, logOut }}>
+            <Authcontext.Provider value={{ isAuth, role, logIn, logOut }}>
                 {children}
             </Authcontext.Provider>
 

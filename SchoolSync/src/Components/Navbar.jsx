@@ -5,7 +5,7 @@ function Navbar() {
 
     return (
         <>
-            <Center>
+            <Center >
                 <Flex gap={"50px"} w="1000px">
                     <InputGroup>
                         <InputLeftElement

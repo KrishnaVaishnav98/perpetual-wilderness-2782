@@ -1,8 +1,33 @@
 import { Box, Text, Image, Flex, Avatar, Divider, Center, Heading, Button } from '@chakra-ui/react'
 import styles from "./MainMenu.module.css";
 import { Link } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import firebase from '../firebase';
 
 function MainMenu() {
+
+    const addItemToCollection = () => {
+        // Access the Firestore collection
+        const collectionRef = firebase.firestore().collection('users');
+
+        // Create a new item object
+        const newItem = {
+            name: 'Example Item',
+            description: 'This is an example item.',
+            // Add more properties as needed
+        };
+
+        // Add the new item to the collection
+        collectionRef
+            .add(newItem)
+            .then((docRef) => {
+                console.log('Item added with ID: ', docRef.id);
+            })
+            .catch((error) => {
+                console.error('Error adding item: ', error);
+            });
+    };
+
 
     return (
         <Box bgColor={"#6B56F6"} w="270px" borderRadius={"20px"} >
@@ -122,7 +147,7 @@ function MainMenu() {
                     <Flex flex='1' gap='4' alignItems='center' flexWrap='wrap'>
                         <Box>
                             <Heading size='sm' color='purple.50'>Segun Adebayo</Heading>
-                            <Button mt="20px" bgColor={"white"} color='purple.600' variant='solid'>Logout</Button>
+                            <Button mt="20px" bgColor={"white"} color='purple.600' variant='solid' onClick={addItemToCollection} >Logout</Button>
                         </Box>
                     </Flex>
                 </Box>

@@ -4,12 +4,12 @@ import Navbar from "../Components/Navbar";
 
 function Dashboard() {
     return (
-        <Flex>
+        <Flex >
 
             <Box>
                 <MainMenu />
             </Box>
-            <Box>
+            <Box >
                 <Box m="20px" w={{ base: '400px', sm: '200px', md: "400px", lg: "800px" }}>
                     <Navbar />
                 </Box>
