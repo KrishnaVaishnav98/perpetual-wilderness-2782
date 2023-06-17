@@ -5,7 +5,6 @@ import Events from "../Pages/Events"
 import Students from "../Pages/Students"
 import Teachers from "../Pages/Teachers"
 import Assignments from "../Pages/Assignments"
-import Holidays from "../Pages/Holidays"
 import Profile from "../Pages/Profile"
 import ProfileStudent from "../Pages/ProfileStudent"
 

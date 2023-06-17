@@ -1,4 +1,4 @@
-import { Box, Button, FormLabel, FormControl, Input } from '@chakra-ui/react'
+import { Box, Button, FormLabel, FormControl, Input, Select } from '@chakra-ui/react'
 
 function AddStudent1({ formData, handleChange, handleStep }) {
 
@@ -39,6 +39,15 @@ function AddStudent1({ formData, handleChange, handleStep }) {
                     value={formData.birthDate}
                     onChange={handleChange}
                     type="date" placeholder='Birth date' />
+            </FormControl>
+
+            <FormControl isRequired mb="15px">
+                <FormLabel>Gender</FormLabel>
+                <Select placeholder='Select Gender' name="gender" value={formData.gender}
+                    onChange={handleChange} >
+                    <option value='male'>Male</option>
+                    <option value='female'>Female</option>
+                </Select>
             </FormControl>
 
             <Button color={"blue.600"} variant={"outline"} onClick={() => (handleStep(1))}>Next</Button>

@@ -1,10 +1,20 @@
-import { useState } from "react";
+import MainMenu from "../Components/MainMenu";
+import { Box, Flex } from '@chakra-ui/react'
+import Navbar from "../Components/Navbar";
 
 function Events() {
     return (
-        <>
-            <h1>Evnets</h1>
-        </>
+        <Flex >
+            <Box>
+                <MainMenu />
+            </Box>
+            <Box >
+                <Box m="20px" w={{ base: '400px', sm: '200px', md: "400px", lg: "800px" }}>
+                    <Navbar />
+                </Box>
+            </Box>
+
+        </Flex>
     )
 }
 

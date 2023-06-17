@@ -6,8 +6,8 @@ function Navbar() {
     return (
         <>
             <Center >
-                <Flex gap={"50px"} w="1000px">
-                    <InputGroup>
+                <Flex gap={"50px"} w="1000px" bgColor={"white"}>
+                    <InputGroup border={"#9FA8DA"}>
                         <InputLeftElement
                             pointerEvents='none'
                             children={<Search2Icon color='#263238' />}
