@@ -7,11 +7,12 @@ import Teachers from "../Pages/Teachers"
 import Assignments from "../Pages/Assignments"
 import Holidays from "../Pages/Holidays"
 import Profile from "../Pages/Profile"
+import ProfileStudent from "../Pages/ProfileStudent"
 
 function AllRoutes() {
     return (
         <Routes>
-            <Route path="/login" element={<Login />} />
+            <Route path="/" element={<Login />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/events" element={<Events />} />
             <Route path="/students" element={<Students />} />
@@ -19,6 +20,7 @@ function AllRoutes() {
             <Route path="/assignments" element={<Assignments />} />
             <Route path="/changepassword" element={<></>} />
             <Route path="/teachers/:id" element={<Profile />} />
+            <Route path="/students/:id" element={<ProfileStudent />} />
         </Routes>
     )
 }
