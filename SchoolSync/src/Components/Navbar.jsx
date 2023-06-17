@@ -6,7 +6,7 @@ function Navbar() {
     return (
         <>
             <Center >
-                <Flex gap={"50px"} w="1000px" bgColor={"white"}>
+                <Flex gap={"50px"} w="1000px" borderRadius={"5px"} bgColor={"white"}>
                     <InputGroup border={"#9FA8DA"}>
                         <InputLeftElement
                             pointerEvents='none'

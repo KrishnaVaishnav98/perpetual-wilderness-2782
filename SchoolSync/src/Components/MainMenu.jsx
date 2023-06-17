@@ -3,29 +3,19 @@ import styles from "./MainMenu.module.css";
 import { Link } from 'react-router-dom';
 import React, { useEffect } from 'react';
 import firebase from '../firebase';
+import { useContext } from 'react';
+import { Authcontext } from '../Context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 function MainMenu() {
 
-    const addItemToCollection = () => {
-        // Access the Firestore collection
-        const collectionRef = firebase.firestore().collection('users');
+    const { isAuth, logIn, logOut, currentUser } = useContext(Authcontext)
+    const navigate = useNavigate()
 
-        // Create a new item object
-        const newItem = {
-            name: 'Example Item',
-            description: 'This is an example item.',
-            // Add more properties as needed
-        };
+    const handleLogOut = () => {
+        logOut()
+        navigate("/")
 
-        // Add the new item to the collection
-        collectionRef
-            .add(newItem)
-            .then((docRef) => {
-                console.log('Item added with ID: ', docRef.id);
-            })
-            .catch((error) => {
-                console.error('Error adding item: ', error);
-            });
     };
 
 
@@ -146,8 +136,8 @@ function MainMenu() {
                 <Box mt="20px" mb="30px" className='profile'>
                     <Flex flex='1' gap='4' alignItems='center' flexWrap='wrap'>
                         <Box>
-                            <Heading size='sm' color='purple.50'>Segun Adebayo</Heading>
-                            <Button mt="20px" bgColor={"white"} color='purple.600' variant='solid' onClick={addItemToCollection} >Logout</Button>
+                            <Heading size='sm' color='purple.50'>{isAuth ? currentUser.name : ""}</Heading>
+                            <Button mt="20px" bgColor={"white"} color='purple.600' variant='solid' onClick={handleLogOut} >{isAuth ? "Logout" : "LogIn"}</Button>
                         </Box>
                     </Flex>
                 </Box>
