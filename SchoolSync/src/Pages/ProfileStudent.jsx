@@ -45,17 +45,17 @@ function ProfileStudent() {
     return (
         <Flex >
 
-            <Box>
+            <Box bgColor={"#F6F5FF"} >
                 <MainMenu />
             </Box>
-            <Box >
+            <Box bgColor={"#F6F5FF"} w="full">
                 <Box m="20px" w={{ base: '400px', sm: '200px', md: "400px", lg: "800px" }}>
                     <Navbar />
                 </Box>
-                <Box ml={"30px"} w={{ base: '400px', sm: '200px', md: "400px", lg: "800px" }} >
-                    <Card p="15px" border={"solid"} borderColor={"#EBEEFA"} borderWidth={"0.2px"}>
+                <Box ml={{ base: '10px', sm: '50px', md: "80px", lg: "200px" }} w={{ base: '400px', sm: '200px', md: "400px", lg: "800px" }} >
+                    <Card p="30px" border={"solid"} borderColor={"#EBEEFA"} borderWidth={"0.2px"}>
                         <CardHeader>
-                            <Flex justifyContent={"space-around"}>
+                            <Flex display={"flex"} flexDirection={{ base: 'column', sm: 'column', md: "row", lg: "row" }} justifyContent={"space-around"}>
                                 {
                                     profileData.gender == "male" ?
                                         <Image

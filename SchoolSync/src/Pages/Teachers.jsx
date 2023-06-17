@@ -84,7 +84,7 @@ function Teachers() {
             if (formData.email && formData.education && formData.birthDate && formData.name && formData.phone && formData.subject && formData.address && formData.class && formData.gender) {
                 addDataToFirestore()
                 setFormData(initData)
-                alert("data added successfully")
+                alert("Data added successfully")
             } else {
                 alert("Please fill all required details")
             }
@@ -120,7 +120,7 @@ function Teachers() {
 
         return (
             <>
-                <Button onClick={onOpen}>{name}</Button>
+                <Button colorScheme="blue" onClick={onOpen}>{name}</Button>
 
                 <Modal isOpen={isOpen} onClose={onClose}>
                     <ModalOverlay />
@@ -147,12 +147,12 @@ function Teachers() {
     }
 
     return (
-        <Flex>
+        <Flex >
 
-            <Box>
+            <Box bgColor={"#F6F5FF"} pb={"50px"}>
                 <MainMenu />
             </Box>
-            <Box>
+            <Box bgColor={"#F6F5FF"} w="full" pb={"50px"}>
                 <Box m="20px" w={{ base: '400px', sm: '200px', md: "400px", lg: "800px" }}>
                     <Navbar />
                 </Box>
@@ -167,7 +167,7 @@ function Teachers() {
                     </Box>
                 </Flex>
                 <Box>
-                    <SimpleGrid spacing={4} templateColumns='repeat(3, 1fr)' ml="20px" >
+                    <SimpleGrid spacing={4} templateColumns={{ base: 'repeat(3, 1fr)', sm: 'repeat(1, 1fr)', md: "repeat(1, 1fr)", lg: "repeat(3, 1fr)" }} ml="20px" >
                         {
                             userData.map((item, index) => (
                                 <TeachersCard key={index} data={item}></TeachersCard>
