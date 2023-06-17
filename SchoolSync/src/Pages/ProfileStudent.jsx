@@ -7,7 +7,7 @@ import firebase from 'firebase/compat/app';
 import 'firebase/compat/firestore';
 import { useParams, useNavigate } from "react-router-dom";
 
-function Profile() {
+function ProfileStudent() {
 
     const [profileData, setProfileData] = useState(null);
     const { id } = useParams()
@@ -16,7 +16,7 @@ function Profile() {
 
 
     useEffect(() => {
-        const collectionRef = firebase.firestore().collection('teachers');
+        const collectionRef = firebase.firestore().collection('students');
 
         collectionRef
             .doc(id)
@@ -114,28 +114,28 @@ function Profile() {
                             <VStack display={"flex"} alignItems={"flex-start"} ml={"30px"} fontSize={"20px"}>
 
                                 <Flex>
-                                    <Text mr="10px" color={"red.600"} > Subject:</Text>
-                                    <Text > {profileData.subject}</Text>
-                                </Flex>
-
-                                <Flex>
                                     <Text mr="10px" color={"red.600"} > Class:</Text>
                                     <Text > {profileData.class}</Text>
                                 </Flex>
 
                                 <Flex>
-                                    <Text mr="10px" color={"red.600"} > Educational Qualification:</Text>
-                                    <Text > {profileData.education}</Text>
+                                    <Text mr="10px" color={"red.600"} > Gender:</Text>
+                                    <Text > {profileData.gender == "female" ? "Female" : "Male"}</Text>
+                                </Flex>
+
+                                <Flex>
+                                    <Text mr="10px" color={"red.600"} > Father's Name:</Text>
+                                    <Text > {profileData.fatherName}</Text>
+                                </Flex>
+
+                                <Flex>
+                                    <Text mr="10px" color={"red.600"} > Mother's Name:</Text>
+                                    <Text > {profileData.motherName}</Text>
                                 </Flex>
 
                                 <Flex>
                                     <Text mr="10px" color={"red.600"} > Address:</Text>
                                     <Text > {profileData.address}</Text>
-                                </Flex>
-
-                                <Flex>
-                                    <Text mr="10px" color={"red.600"} > Gender:</Text>
-                                    <Text > {profileData.gender == "female" ? "Female" : "Male"}</Text>
                                 </Flex>
 
                                 <Flex>
@@ -149,7 +149,7 @@ function Profile() {
 
                         <Center >
                             <CardFooter>
-                                <Box onClick={() => navigate("/teachers")} >
+                                <Box onClick={() => navigate("/students")} >
                                     <Tooltip label='Go Back' fontSize='md' >
                                         <IconButton
                                             variant='solid'
@@ -175,4 +175,4 @@ function Profile() {
     )
 }
 
-export default Profile
+export default ProfileStudent

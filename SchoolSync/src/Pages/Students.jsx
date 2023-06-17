@@ -1,14 +1,12 @@
 import MainMenu from "../Components/MainMenu";
-import { Box, Flex, Text, Divider, Button, FormLabel, FormControl, Input } from '@chakra-ui/react'
+import { Box, Flex, Text, Divider, Button, FormLabel, FormControl, Input, SimpleGrid } from '@chakra-ui/react'
 import Navbar from "../Components/Navbar";
 import AddStudent1 from "../Components/AddStudent1";
 import AddStudent2 from "../Components/AddStudent2";
-import TeachersCard from "../Components/TeachersCard";
+import StudentsCard from "../Components/StudentsCard";
 import React, { useEffect } from 'react';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/firestore';
-
-
 import { useState } from "react";
 import {
     Modal,
@@ -88,6 +86,7 @@ function Students() {
 
             if (formData.email && formData.motherName && formData.birthDate && formData.name && formData.phone && formData.fatherName && formData.address && formData.class && formData.gender) {
                 addDataToFirestore()
+                setFormData(initData)
                 alert("data added successfully")
             } else {
                 alert("Please fill all required details")
@@ -108,7 +107,6 @@ function Students() {
                 })
                     .then((docRef) => {
                         fetchDataFromFirestore()
-                        setFormData(initData)
                         console.log('Document added with ID: ', docRef.id);
                     })
                     .catch((error) => {
@@ -170,7 +168,13 @@ function Students() {
                     </Box>
                 </Flex>
                 <Box>
-
+                    <SimpleGrid spacing={4} templateColumns='repeat(3, 1fr)' ml="20px" >
+                        {
+                            userData.map((item, index) => (
+                                <StudentsCard key={index} data={item}></StudentsCard>
+                            ))
+                        }
+                    </SimpleGrid>
                 </Box>
             </Box>
 
