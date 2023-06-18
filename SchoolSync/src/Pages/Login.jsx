@@ -16,8 +16,8 @@ function LogIn() {
         role: ""
     }
 
-    const [userId, setUserId] = useState("admin")
-    const [password, setPassword] = useState("admin")
+    const [userId, setUserId] = useState("")
+    const [password, setPassword] = useState("")
     const [role, setRole] = useState("")
     const [data, setData] = useState({})
     const navigate = useNavigate();
