@@ -1,13 +1,13 @@
 import MainMenu from "../Components/MainMenu";
-import { Box, Flex, Text, Divider, Button, FormLabel, FormControl, Input, SimpleGrid } from '@chakra-ui/react'
+import { Box, Flex, Text, Divider, Button, FormLabel, FormControl, Input, SimpleGrid, Center } from '@chakra-ui/react'
 import Navbar from "../Components/Navbar";
 import AddStudent1 from "../Components/AddStudent1";
 import AddStudent2 from "../Components/AddStudent2";
 import StudentsCard from "../Components/StudentsCard";
-import React, { useEffect } from 'react';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/firestore';
-import { useState } from "react";
+import { Authcontext } from "../Context/AuthContext";
+import { useContext, useState, useEffect } from "react";
 import {
     Modal,
     ModalOverlay,
@@ -18,6 +18,8 @@ import {
     ModalCloseButton,
     useDisclosure
 } from '@chakra-ui/react'
+import Loading from "../Components/Loading";
+
 
 function Students() {
 
@@ -36,9 +38,11 @@ function Students() {
         fatherName: ""
     }
 
+    const { isAuth, logIn, logOut, currentUser } = useContext(Authcontext)
     const [step, setStep] = useState(1);
     const [formData, setFormData] = useState(initData);
     const [userData, setUserData] = useState([]);
+    const [loading, setLoading] = useState(false)
 
     useEffect(() => {
         fetchDataFromFirestore()
@@ -46,6 +50,7 @@ function Students() {
 
     const fetchDataFromFirestore = () => {
 
+        setLoading(true)
         const collectionRef = firebase.firestore().collection('students');
 
         collectionRef
@@ -56,9 +61,11 @@ function Students() {
                     ...doc.data(),
                 }));
                 setUserData(fetchedData);
+                setLoading(false)
             })
             .catch((error) => {
                 console.error('Error fetching data: ', error);
+                setLoading(false)
             });
 
         return userData;
@@ -161,20 +168,34 @@ function Students() {
                 <Flex m="25px" display={"flex"} justifyContent={"space-between"}>
                     <Box>
                         <Text display={"flex"} alignItems={"flex-start"} fontSize={"22px"} fontWeight={"bold"} > STUDENTS </Text>
-                        <Text color={"gray.500"} fontSize={"16px"} > Hi,name! Welcome to SchoolSync Dashboard </Text>
+                        <Text color={"gray.500"} fontSize={"16px"} > Hi,{currentUser?.name ? currentUser?.name : "user"}! Welcome to SchoolSync Dashboard </Text>
                     </Box>
-                    <Box>
-                        {BasicUsage("+ Add New Admission")}
-                    </Box>
+
+                    {
+                        currentUser?.role == "admin" ?
+                            <Box>
+                                {BasicUsage("+ Add New Admission")}
+                            </Box> : ""
+
+                    }
+
                 </Flex>
                 <Box>
-                    <SimpleGrid spacing={4} templateColumns={{ base: 'repeat(3, 1fr)', sm: 'repeat(1, 1fr)', md: "repeat(1, 1fr)", lg: "repeat(3, 1fr)" }} ml="20px" >
-                        {
-                            userData.map((item, index) => (
-                                <StudentsCard key={index} data={item}></StudentsCard>
-                            ))
-                        }
-                    </SimpleGrid>
+                    {
+                        loading ?
+                            < Center>
+                                <Loading />
+                            </Center>
+                            :
+                            <SimpleGrid spacing={4} templateColumns={{ base: 'repeat(3, 1fr)', sm: 'repeat(1, 1fr)', md: "repeat(1, 1fr)", lg: "repeat(3, 1fr)" }} ml="20px" >
+                                {
+                                    userData.map((item, index) => (
+                                        <StudentsCard key={index} data={item}></StudentsCard>
+                                    ))
+                                }
+                            </SimpleGrid>
+                    }
+
                 </Box>
             </Box>
 
