@@ -4,17 +4,19 @@ import firebase from 'firebase/compat/app';
 import 'firebase/compat/firestore';
 import { useState } from "react";
 import { Box, Text } from "@chakra-ui/react";
+import Loading from "./Loading";
 
 function Holidays() {
 
     const [holidays, setHolidays] = useState([])
+    const [loading, setLoading] = useState(false)
 
     useEffect(() => {
         fetchDataFromFirestore()
     }, [])
 
     const fetchDataFromFirestore = () => {
-
+        setLoading(true)
         const collectionRef = firebase.firestore().collection('holidays');
 
         collectionRef
@@ -25,28 +27,32 @@ function Holidays() {
                     ...doc.data(),
                 }));
                 setHolidays(fetchedData);
-
+                setLoading(false)
             })
             .catch((error) => {
                 console.error('Error fetching data: ', error);
+                setLoading(false)
             });
 
         return holidays;
     };
 
+    if (loading) {
+        return <Loading />
+    }
 
 
     return (
-        <Box position={"sticky"} bgColor={"#white"} borderRadius={"10px"} border={"2px solid #9FA8DA"} padding={"15px"}>
+        <Box position={"sticky"} bgColor={"#white"} borderRadius={"10px"} border={"2px solid #CFD8DC"} padding={"15px"} >
             <Box width={"100px"}>
-                <Text color={"#283593"} fontWeight={"bold"}>HOLIDAYS</Text>
+                <Text color={"#37474F"} fontWeight={"bold"}>HOLIDAYS</Text>
             </Box>
             {
                 holidays.map((el, index) => (
                     <HolidayCard key={index} index={index} {...el} />
                 ))
             }
-        </Box>
+        </Box >
     )
 }
 

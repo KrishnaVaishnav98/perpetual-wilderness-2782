@@ -46,6 +46,7 @@ function AssignmentTeacher() {
                                 <Th>Name</Th>
                                 <Th>Class</Th>
                                 <Th>Submission</Th>
+                                <Th>Submission Date</Th>
                             </Tr>
                         </Thead>
                         <Tbody>

@@ -8,7 +8,7 @@ import firebase from 'firebase/compat/app';
 import 'firebase/compat/firestore';
 import { useNavigate } from 'react-router-dom';
 
-function LogIn() {
+function ChangePassword() {
 
     let initData = {
         userId: "",
@@ -16,19 +16,20 @@ function LogIn() {
         role: ""
     }
 
-    const [userId, setUserId] = useState("admin")
-    const [password, setPassword] = useState("admin")
+    const [userId, setUserId] = useState("")
+    const [password, setPassword] = useState("")
+    const [newPassword, setNewPassword] = useState("")
     const [role, setRole] = useState("")
     const [data, setData] = useState({})
     const navigate = useNavigate();
 
     const { isAuth, logIn, logOut, currentUser } = useContext(Authcontext)
 
-    const handleClick = () => {
 
-        if (role) {
-
+    const handleChangePassword = () => {
+        if (role && userId && password && newPassword) {
             const collectionRef = firebase.firestore().collection(role);
+
             collectionRef
                 .where('userId', '==', userId)
                 .get()
@@ -36,35 +37,44 @@ function LogIn() {
                     if (!querySnapshot.empty) {
                         const fetchedData = querySnapshot.docs.map((doc) => ({
                             id: doc.id,
-                            ...doc.data()
+                            ...doc.data(),
                         }));
-                        setData(fetchedData[0]);
-                        setCurrentUser(fetchedData[0])
+                        const userData = fetchedData[0];
 
+                        if (password === userData.password) {
+                            collectionRef
+                                .doc(userData.id)
+                                .update({ password: newPassword })
+                                .then(() => {
+                                    alert('Password updated successfully!');
+                                    navigate("/")
+                                })
+                                .catch((error) => {
+                                    console.error('Error updating password:', error);
+                                    alert('Failed to update password. Please try again.');
+                                });
+                        } else {
+                            alert('Old password is incorrect.');
+                        }
                     } else {
-                        alert('No User Found');
-                        console.log('No matching documents');
+                        alert('No user found.');
                     }
                 })
                 .catch((error) => {
-                    alert("Something went wrong. Please try again")
-                    console.error('Error fetching documents: ', error);
+                    console.error('Error fetching documents:', error);
+                    alert('Something went wrong. Please try again.');
                 });
         } else {
-            return alert("Please fill all details")
+            alert('Please fill in all details.');
         }
+    };
+
+
+    const handleClick = () => {
+
+        handleChangePassword()
     }
 
-    console.log(currentUser)
-
-    function setCurrentUser(userData) {
-        if (password == userData.password) {
-            logIn(userData)
-            navigate("/dashboard")
-        } else {
-            alert("Password is incorrect")
-        }
-    }
 
 
     return (<>
@@ -107,7 +117,7 @@ function LogIn() {
 
             <Center>
                 <Box ml="200px" box-shadow={"rgba(99, 99, 99, 0.2) 0px 2px 8px 0px"} w={"400px"}>
-                    <Text fontSize={"25px"} fontWeight={"bold"}>Login to SchoolSync</Text>
+                    <Text fontSize={"25px"} fontWeight={"bold"}>Change Password </Text>
                     <br />
                     <FormControl isRequired >
                         <FormLabel>UserID</FormLabel>
@@ -115,13 +125,17 @@ function LogIn() {
                         <br />
                         <br />
 
-                        <FormLabel>Password</FormLabel>
-                        <Input type='password' placeholder='Password' value={password} onChange={(e) => setPassword(e.target.value)} />
+                        <FormLabel>Old Password</FormLabel>
+                        <Input type='password' placeholder='Old Password' value={password} onChange={(e) => setPassword(e.target.value)} />
 
                         <br />
                         <br />
 
+                        <FormLabel>New Password</FormLabel>
+                        <Input type='password' placeholder='New Password' value={newPassword} onChange={(e) => setNewPassword(e.target.value)} />
 
+                        <br />
+                        <br />
                     </FormControl>
                     <Center>
                         <Box display={"flex"} justifyContent={"space-evenly"}>
@@ -145,15 +159,6 @@ function LogIn() {
                                 Teacher
                             </label>
 
-                            <label >
-                                <input
-                                    type="radio"
-                                    value="admin"
-                                    checked={role === "admin"}
-                                    onChange={(e) => setRole(e.target.value)}
-                                />
-                                Admin
-                            </label>
                         </Box>
                     </Center>
 
@@ -169,4 +174,4 @@ function LogIn() {
     </>)
 }
 
-export default LogIn;
+export default ChangePassword;

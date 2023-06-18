@@ -6,10 +6,12 @@ import firebase from '../firebase';
 import { useContext } from 'react';
 import { Authcontext } from '../Context/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 
 function MainMenu() {
 
     const { isAuth, logIn, logOut, currentUser } = useContext(Authcontext)
+
     const navigate = useNavigate()
 
     const handleLogOut = () => {
@@ -20,18 +22,22 @@ function MainMenu() {
 
 
     return (
-        <Box position={"sticky"} top={"0px"} bgColor={"#6B56F6"} w="270px" borderRadius={"20px"} >
+        <Box position={"sticky"} top={"0px"} bgColor={"#273143"} w="270px" borderRadius={"20px"} >
             <Link to="/dashboard">
-                <Box bgColor={"#6B56F6"} pt="30px" w="270px" borderRadius={"15px"} className='logo' >
-                    <Image
-                        src={require('../Images/SchoolSync3.png')}
-                        alt="SchoolSync"
-                        h="50px"
-                        w="200px"
-                        ml="20px"
-                        borderRadius={"15px"}
-                        objectFit="contain"
-                    />
+                <Box bgColor={"#273143"} pt="30px" w="270px" borderRadius={"15px"} className='logo' >
+                    <Center>
+                        <Box w="220px" h="50px" borderRadius={"10px"} bgColor={"white"}>
+                            <Image
+                                src={require('../Images/logo.png')}
+                                alt="SchoolSync"
+                                h="50px"
+                                w="200px"
+                                ml="10px"
+
+                                objectFit="contain"
+                            />
+                        </Box>
+                    </Center>
                 </Box>
             </Link>
 
@@ -40,7 +46,7 @@ function MainMenu() {
                 <Link to="/dashboard">
                     <Box className={styles.mainmenu}>
                         <Flex p="15px">
-                            <Avatar ml="20px" size={"xs"} bgColor={"white"} src={require('../Images/dashboard.png')} />
+                            <Avatar ml="20px" size={"xs"} bgColor={"white"} src={require('../Images/dashboard3.png')} />
                             <Box ml='4'>
                                 <Text color={"white"} fontWeight='bold' fontSize='14px' className="page">
                                     DASHBOARD
@@ -53,7 +59,7 @@ function MainMenu() {
                 <Link to="/teachers">
                     <Box className={styles.mainmenu}>
                         <Flex p="15px" >
-                            <Avatar ml="20px" size={"xs"} bgColor={"white"} src={require('../Images/teachers.png')} />
+                            <Avatar ml="20px" size={"xs"} bgColor={"white"} src={require('../Images/teachers2.png')} />
                             <Box ml='4'>
                                 <Text color={"white"} fontWeight='bold' fontSize='14px'>
                                     TEACHERS
@@ -66,7 +72,7 @@ function MainMenu() {
                 <Link to="/students">
                     <Box className={styles.mainmenu}>
                         <Flex p="15px" >
-                            <Avatar ml="20px" size={"xs"} bgColor={"white"} src={require('../Images/students.png')} />
+                            <Avatar ml="20px" size={"xs"} bgColor={"white"} src={require('../Images/graduate.png')} />
                             <Box ml='4'>
                                 <Text color={"white"} fontWeight='bold' fontSize='14px'>
                                     STUDENTS
@@ -76,13 +82,13 @@ function MainMenu() {
                     </Box>
                 </Link>
 
-                <Link to="/events">
+                <Link to="/announcement">
                     <Box className={styles.mainmenu}>
                         <Flex p="15px" >
-                            <Avatar ml="20px" size={"xs"} bgColor={"white"} src={require('../Images/event.png')} />
+                            <Avatar ml="20px" size={"xs"} bgColor={"white"} src={require('../Images/announcement.png')} />
                             <Box ml='4'>
                                 <Text color={"white"} fontWeight='bold' fontSize='14px'>
-                                    EVENTS
+                                    ANNOUNCEMENTS
                                 </Text>
                             </Box>
                         </Flex>
@@ -92,7 +98,7 @@ function MainMenu() {
                 <Link to="/assignments">
                     <Box className={styles.mainmenu}>
                         <Flex p="15px" >
-                            <Avatar ml="20px" size={"xs"} bgColor={"white"} src={require('../Images/event.png')} />
+                            <Avatar ml="20px" size={"xs"} bgColor={"white"} src={require('../Images/paper.png')} />
                             <Box ml='4'>
                                 <Text color={"white"} fontWeight='bold' fontSize='14px'>
                                     ASSIGNMENTS
@@ -105,7 +111,7 @@ function MainMenu() {
                 <Link to="/changepassword">
                     <Box className={styles.mainmenu}>
                         <Flex p="15px" >
-                            <Avatar ml="20px" size={"xs"} bgColor={"white"} src={require('../Images/event.png')} />
+                            <Avatar ml="20px" size={"xs"} bgColor={"white"} src={require('../Images/lock.png')} />
                             <Box ml='4'>
                                 <Text color={"white"} fontWeight='bold' fontSize='14px'>
                                     CHANGE PASSWORD
@@ -117,11 +123,11 @@ function MainMenu() {
 
                 <Box>
                     <Image
-                        src={require('../Images/Picture.png')}
+                        src={require('../Images/kids.png')}
                         alt="SchoolSync"
                         h="180px"
                         w="250px"
-                        bgColor={"#6B56F6"}
+                        bgColor={"#273143"}
                         borderRadius={"15px"}
                         objectFit="contain"
                     />
@@ -136,8 +142,8 @@ function MainMenu() {
                 <Box mt="20px" mb="30px" className='profile'>
                     <Flex flex='1' gap='4' alignItems='center' flexWrap='wrap'>
                         <Box>
-                            <Heading size='sm' color='purple.50'>{isAuth ? currentUser.name : ""}</Heading>
-                            <Button mt="20px" bgColor={"white"} color='purple.600' variant='solid' onClick={handleLogOut} >{isAuth ? "Logout" : "LogIn"}</Button>
+                            <Heading size='sm' color='white'>{isAuth ? currentUser.name : ""}</Heading>
+                            <Button mt="20px" bgColor={"white"} color='#263238' variant='solid' onClick={handleLogOut} >{isAuth ? "Logout" : "LogIn"}</Button>
                         </Box>
                     </Flex>
                 </Box>

@@ -1,4 +1,5 @@
-import { Box, Text, Table, Thead, Tbody, Tfoot, Tr, Th, Td, TableCaption, TableContainer } from "@chakra-ui/react";
+import { Box, Text, Table, Thead, Tbody, Tfoot, Tr, Th, Td, TableCaption, TableContainer, Link } from "@chakra-ui/react";
+
 
 function AssignmentCard({ el }) {
     return (
@@ -8,10 +9,13 @@ function AssignmentCard({ el }) {
                 <Td>{el.userId}</Td>
                 <Td>{el.name}</Td>
                 <Td >{el.class}</Td>
-                <Td >{el.assignment}</Td>
+                <Td >
+                    <Link href={el.assignment}>
+                        {el.assignment}
+                    </Link>
+                </Td>
+                <Td >{el.date}</Td>
             </Tr>
-
-
         </>
     )
 }

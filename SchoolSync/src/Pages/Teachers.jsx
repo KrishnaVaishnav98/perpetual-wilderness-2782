@@ -1,10 +1,11 @@
 import MainMenu from "../Components/MainMenu";
-import { Box, Flex, Text, Divider, Button, SimpleGrid, FormControl, Input } from '@chakra-ui/react'
+import { Box, Flex, Text, Divider, Button, SimpleGrid, FormControl, Input, Center } from '@chakra-ui/react'
 import Navbar from "../Components/Navbar";
 import AddTeacher1 from "../Components/AddTeacher1";
 import AddTeacher2 from "../Components/AddTeacher2";
 import TeachersCard from "../Components/TeachersCard";
-import React, { useEffect } from 'react';
+import { Authcontext } from "../Context/AuthContext";
+import React, { useEffect, useContext } from 'react';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/firestore';
 import { useState } from "react";
@@ -13,6 +14,8 @@ import {
     ModalCloseButton,
     useDisclosure
 } from '@chakra-ui/react'
+import Loading from "../Components/Loading";
+
 
 function Teachers() {
 
@@ -34,7 +37,8 @@ function Teachers() {
     const [step, setStep] = useState(1);
     const [formData, setFormData] = useState(initData);
     const [userData, setUserData] = useState([]);
-
+    const [loading, setLoading] = useState(false)
+    const { isAuth, logIn, logOut, currentUser } = useContext(Authcontext)
 
     useEffect(() => {
         fetchDataFromFirestore()
@@ -42,6 +46,7 @@ function Teachers() {
 
     const fetchDataFromFirestore = () => {
 
+        setLoading(true)
         const collectionRef = firebase.firestore().collection('teachers');
 
         collectionRef
@@ -52,9 +57,11 @@ function Teachers() {
                     ...doc.data(),
                 }));
                 setUserData(fetchedData);
+                setLoading(false)
             })
             .catch((error) => {
                 console.error('Error fetching data: ', error);
+                setLoading(false)
             });
 
         return userData;
@@ -114,8 +121,6 @@ function Teachers() {
         };
 
 
-
-
         console.log("teacher", userData)
 
         return (
@@ -146,6 +151,8 @@ function Teachers() {
         )
     }
 
+
+
     return (
         <Flex >
 
@@ -160,20 +167,31 @@ function Teachers() {
                 <Flex m="25px" display={"flex"} justifyContent={"space-between"}>
                     <Box>
                         <Text display={"flex"} alignItems={"flex-start"} fontSize={"22px"} fontWeight={"bold"} > TEACHERS </Text>
-                        <Text color={"gray.500"} fontSize={"16px"} > Hi,name! Welcome to SchoolSync Dashboard </Text>
+                        <Text color={"gray.500"} fontSize={"16px"} > Hi,{currentUser?.name ? currentUser?.name : "user"}! Welcome to SchoolSync Dashboard </Text>
                     </Box>
-                    <Box>
-                        {BasicUsage("+ Add New Teacher")}
-                    </Box>
+                    {
+                        currentUser?.role == "admin" ?
+                            <Box>
+                                {BasicUsage("+ Add New Admission")}
+                            </Box> : ""
+
+                    }
                 </Flex>
                 <Box>
-                    <SimpleGrid spacing={4} templateColumns={{ base: 'repeat(3, 1fr)', sm: 'repeat(1, 1fr)', md: "repeat(1, 1fr)", lg: "repeat(3, 1fr)" }} ml="20px" >
-                        {
-                            userData.map((item, index) => (
-                                <TeachersCard key={index} data={item}></TeachersCard>
-                            ))
-                        }
-                    </SimpleGrid>
+
+                    {
+                        loading ?
+                            < Center>
+                                <Loading />
+                            </Center>
+                            :
+                            <SimpleGrid spacing={4} templateColumns={{ base: 'repeat(3, 1fr)', sm: 'repeat(1, 1fr)', md: "repeat(1, 1fr)", lg: "repeat(3, 1fr)" }} ml="20px" >
+                                {userData.map((item, index) => (
+                                    <TeachersCard key={index} data={item}></TeachersCard>
+                                ))}
+                            </SimpleGrid>
+                    }
+
                 </Box>
             </Box>
 
