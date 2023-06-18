@@ -3,14 +3,15 @@ import firebase from 'firebase/compat/app';
 import 'firebase/compat/firestore';
 import { useEffect, useState } from "react";
 import { Box, Text, Table, Thead, Tbody, Tfoot, Tr, Th, Td, TableCaption, TableContainer } from "@chakra-ui/react";
-
+import Loading from "./Loading";
 
 function AssignmentTeacher() {
 
     const [assignmentData, setAssignmentData] = useState([])
+    const [loading, setLoading] = useState(false)
 
     const fetchDataFromFirestore = () => {
-
+        setLoading(true)
         const collectionRef = firebase.firestore().collection('assignments');
 
         collectionRef
@@ -21,9 +22,11 @@ function AssignmentTeacher() {
                     ...doc.data(),
                 }));
                 setAssignmentData(fetchedData);
+                setLoading(false)
             })
             .catch((error) => {
                 console.error('Error fetching data: ', error);
+                setLoading(false)
             });
 
         return assignmentData;
@@ -33,6 +36,9 @@ function AssignmentTeacher() {
         fetchDataFromFirestore()
     }, [])
 
+    if (loading) {
+        return <Loading />
+    }
 
     return (
         <>

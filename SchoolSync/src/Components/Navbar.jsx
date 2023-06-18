@@ -44,21 +44,14 @@ function Navbar() {
                                 pointerEvents='none'
                                 children={<Search2Icon color='#263238' />}
                             />
-                            <Input w={{ base: "200px", sm: "100px", md: "400px", lg: "600px" }} type='text' placeholder='Search' bgColor={"white"} />
+                            <Input w={{ base: "200px", sm: "100px", md: "400px", lg: "600px" }}
+                                type='text' placeholder='Search' bgColor={"white"}
+                            />
                         </InputGroup>
                     </Flex>
                 </Box>
 
-                {/* <Box>
-                    <Flex w={"250px"} gap='4' alignItems='center' flexWrap='wrap' ml="420px" >
-                        <Avatar bgColor={"#273143"} color={"white"} name={userData.name} />
 
-                        <Box w={"150px"} >
-                            <Heading textAlign={"left"} size='sm'>{userData.name}</Heading>
-                            <Text textAlign={"left"} >Admin</Text>
-                        </Box>
-                    </Flex>
-                </Box> */}
                 <Box pl="350px">
                     <Flex w={"250px"} gap='4' alignItems='center' flexWrap='wrap' >
                         <Avatar bgColor={"#273143"} color={"white"} name={userData.name} />

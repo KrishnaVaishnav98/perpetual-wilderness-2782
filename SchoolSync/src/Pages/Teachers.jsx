@@ -38,6 +38,7 @@ function Teachers() {
     const [formData, setFormData] = useState(initData);
     const [userData, setUserData] = useState([]);
     const [loading, setLoading] = useState(false)
+    const [searchVal, setSearchVal] = useState("");
     const { isAuth, logIn, logOut, currentUser } = useContext(Authcontext)
 
     useEffect(() => {
@@ -66,6 +67,56 @@ function Teachers() {
 
         return userData;
     };
+
+    const handleDelete = (key) => {
+        deleteDataByKey(key);
+    }
+
+    const deleteDataByKey = (key) => {
+        const collectionRef = firebase.firestore().collection('teachers');
+        collectionRef
+            .doc(key)
+            .delete()
+            .then(() => {
+                console.log('Data successfully deleted!');
+                alert("User successfully deleted!")
+                fetchDataFromFirestore()
+            })
+            .catch((error) => {
+                console.error('Error deleting data:', error);
+            });
+    };
+
+
+    // const searchDataByUserId = (searchValue) => {
+    //     const collectionRef = firebase.firestore().collection('teachers');
+    //     collectionRef
+    //         .where("userId", '==', searchValue)
+    //         .get()
+    //         .then((querySnapshot) => {
+    //             const data = [];
+    //             querySnapshot.forEach((doc) => {
+    //                 data.push({ id: doc.id, ...doc.data() });
+    //             });
+
+    //             console.log('Search results:', data);
+    //             setUserData(data)
+    //         })
+    //         .catch((error) => {
+    //             console.error('Error searching data:', error);
+    //         });
+    // };
+
+    // const handleSearch = (searchVal) => {
+    //     searchDataByUserId(searchVal)
+    // }
+
+    // useEffect(() => {
+    //     if (searchVal) {
+    //         handleSearch()
+    //     }
+
+    // }, [searchVal])
 
 
     function BasicUsage(name) {
@@ -187,7 +238,7 @@ function Teachers() {
                             :
                             <SimpleGrid spacing={4} templateColumns={{ base: 'repeat(3, 1fr)', sm: 'repeat(1, 1fr)', md: "repeat(1, 1fr)", lg: "repeat(3, 1fr)" }} ml="20px" >
                                 {userData.map((item, index) => (
-                                    <TeachersCard key={index} data={item}></TeachersCard>
+                                    <TeachersCard handleDelete={handleDelete} key={index} data={item}></TeachersCard>
                                 ))}
                             </SimpleGrid>
                     }

@@ -3,90 +3,19 @@ import {
     ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton, useDisclosure, HStack
 } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
+import { Authcontext } from "../Context/AuthContext";
+import { useContext } from "react";
 
 
-function TeachersCard({ data }) {
+function TeachersCard({ data, handleDelete }) {
+
+    const { isAuth, logIn, logOut, currentUser } = useContext(Authcontext)
     const navigate = useNavigate();
 
     const handleProfile = () => {
         navigate(`/teachers/${data.id}`);
     }
 
-    function ViewProfile(name) {
-        const { isOpen, onOpen, onClose } = useDisclosure()
-
-        return (
-            <>
-                <Button
-                    color={"black"}
-                    bgColor={"green.200"}
-                    variant={"solid"}
-                    onClick={onOpen}> {name}</Button>
-
-                <Modal onClose={onClose} isOpen={isOpen} isCentered>
-                    <ModalOverlay />
-                    <ModalContent>
-                        <ModalHeader>
-                            <Center>
-                                <Text color={"red.600"} fontSize={"25px"}>{data.name}</Text>
-                            </Center>
-
-                        </ModalHeader>
-                        <ModalCloseButton />
-                        <ModalBody fontSize={"17px"} >
-                            <HStack>
-                                <Text color={"blue.600"}>USER Id:</Text>
-                                <Text>{data.userId}</Text>
-                            </HStack>
-
-                            <HStack>
-                                <Text color={"blue.600"}>CLASS:</Text>
-                                <Text>{data.class}</Text>
-                            </HStack>
-
-                            <HStack>
-                                <Text color={"blue.600"}>SUBJECT:</Text>
-                                <Text>{data.subject}</Text>
-                            </HStack>
-
-                            <HStack>
-                                <Text color={"blue.600"}>GENDER:</Text>
-                                <Text>{data.gender}</Text>
-                            </HStack>
-
-                            <HStack>
-                                <Text color={"blue.600"}>EDUCATION:</Text>
-                                <Text>{data.education}</Text>
-                            </HStack>
-
-                            <HStack>
-                                <Text color={"blue.600"}>ADDRESS:</Text>
-                                <Text>{data.address}</Text>
-                            </HStack>
-
-                            <HStack>
-                                <Text color={"blue.600"}>BIRTH DATE:</Text>
-                                <Text>{data.birthDate}</Text>
-                            </HStack>
-
-                            <HStack>
-                                <Text color={"blue.600"}>BIRTH DATE:</Text>
-                                <Text>{data.birthDate}</Text>
-                            </HStack>
-
-                            <HStack>
-                                <Text color={"blue.600"}>BIRTH DATE:</Text>
-                                <Text>{data.birthDate}</Text>
-                            </HStack>
-                        </ModalBody>
-                        <ModalFooter>
-                            <Button onClick={onClose}>Close</Button>
-                        </ModalFooter>
-                    </ModalContent>
-                </Modal>
-            </>
-        )
-    }
 
     return (
         <>
@@ -123,11 +52,13 @@ function TeachersCard({ data }) {
                         <Text >Educational Qualification: {data.education} </Text>
                     </CardBody>
 
-                    <Center>
-                        {/* <Box>
-                            {ViewProfile("View Profile")}
-                        </Box> */}
+
+                    <Center gap={"10px"}>
                         <Button onClick={() => (handleProfile())}>View Profile</Button>
+                        {
+                            currentUser?.role == "admin" ? <Button variant={"solid"} color={"red.500"} onClick={() => (handleDelete(data.id))}>Delete</Button> : ""
+                        }
+
                     </Center>
 
                 </Card>
