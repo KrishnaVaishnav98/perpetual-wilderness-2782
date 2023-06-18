@@ -1,5 +1,5 @@
 import MainMenu from "../Components/MainMenu";
-import { Box, Flex, Text } from '@chakra-ui/react'
+import { Box, Flex, Text, Divider } from '@chakra-ui/react'
 import Navbar from "../Components/Navbar";
 import { Authcontext } from "../Context/AuthContext";
 import { useContext, useState } from "react";
@@ -77,6 +77,8 @@ function Assignments() {
                 <Box m="20px" w={{ base: '400px', sm: '200px', md: "400px", lg: "800px" }} bgColor={"#F6F5FF"}>
                     <Navbar />
                 </Box>
+
+                <Divider colorScheme="purple" w="1243px" />
 
                 <Flex m="25px" display={"flex"} justifyContent={"space-between"}>
                     <Box>

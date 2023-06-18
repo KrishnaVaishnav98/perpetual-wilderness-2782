@@ -71,6 +71,26 @@ function Students() {
         return userData;
     };
 
+
+    const handleDelete = (key) => {
+        deleteDataByKey(key);
+    }
+
+    const deleteDataByKey = (key) => {
+        const collectionRef = firebase.firestore().collection('students');
+        collectionRef
+            .doc(key)
+            .delete()
+            .then(() => {
+                console.log('Data successfully deleted!');
+                alert("User successfully deleted!")
+                fetchDataFromFirestore()
+            })
+            .catch((error) => {
+                console.error('Error deleting data:', error);
+            });
+    };
+
     function BasicUsage(name) {
 
         const { isOpen, onOpen, onClose } = useDisclosure()
@@ -98,7 +118,6 @@ function Students() {
             } else {
                 alert("Please fill all required details")
             }
-
 
         }
 
@@ -190,7 +209,7 @@ function Students() {
                             <SimpleGrid spacing={4} templateColumns={{ base: 'repeat(3, 1fr)', sm: 'repeat(1, 1fr)', md: "repeat(1, 1fr)", lg: "repeat(3, 1fr)" }} ml="20px" >
                                 {
                                     userData.map((item, index) => (
-                                        <StudentsCard key={index} data={item}></StudentsCard>
+                                        <StudentsCard handleDelete={handleDelete} key={index} data={item}></StudentsCard>
                                     ))
                                 }
                             </SimpleGrid>

@@ -6,8 +6,6 @@ function AddStudent2({ formData, handleChange, handleStep }) {
 
         <Box >
 
-
-
             <FormControl isRequired mb="15px">
                 <FormLabel>Address</FormLabel>
                 <Input
