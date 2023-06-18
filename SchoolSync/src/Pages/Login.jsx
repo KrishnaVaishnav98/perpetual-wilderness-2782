@@ -26,7 +26,7 @@ function LogIn() {
 
     const handleClick = () => {
 
-        if (role) {
+        if (role && userId && password) {
 
             const collectionRef = firebase.firestore().collection(role);
             collectionRef
