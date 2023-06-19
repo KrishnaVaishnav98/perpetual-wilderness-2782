@@ -27,8 +27,8 @@ For Admin:
 5. Add announcement
 6. Delete students, teachers
 
-![All users list](/SchoolSync/src/Images/picture3.png)
-(/SchoolSync/src/Images/picture4.png)
+![All users list](/SchoolSync/src/Images/picture4.png)
+
 
 For Students/Techers:
 1. login
@@ -39,8 +39,7 @@ For Students/Techers:
 6. Delete students, teachers
 7. Change Password
 
-![Change Password](/SchoolSync/src/Images/picture3.png)
-(/SchoolSync/src/Images/picture7.png)
+![Change Password](/SchoolSync/src/Images/picture7.png)
 
 ## Usage
 The application allows users to:
@@ -52,5 +51,4 @@ The application allows users to:
 5.Change password
 6.View all submitted assignments(for admin and teachers only)
 
-![Announcement](/SchoolSync/src/Images/picture3.png)
-(/SchoolSync/src/Images/picture5.png)
+![Announcement](/SchoolSync/src/Images/picture5.png)
