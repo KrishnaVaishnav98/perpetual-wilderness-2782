@@ -46,11 +46,19 @@ For Students/Techers:
 ## Usage
 The application allows users to:
 
-1.View a list of teachers
-2.View a list of teachers
-3.View the details of a specific teacher/student
-4.Submit Assignment
-5.Change password
-6.View all submitted assignments(for admin and teachers only)
+1. View a list of teachers
+2. View a list of teachers
+3. View the details of a specific teacher/student
+4. Submit Assignment
+5. Change password
+6. View all submitted assignments(for admin and teachers only)
+
 
 ![Announcement](/SchoolSync/src/Images/picture5.png)
+
+
+## Login credentials:
+
+1. As an admin: [ UserId: admin | Password: admin ]
+2. As a teacher: [ UserId: 123Student | Password: 123 ]
+3. As a student:[ UserId: 123Teacher | Password: 123 ]
