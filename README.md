@@ -62,3 +62,8 @@ The application allows users to:
 1. As an admin: [ UserId: admin | Password: admin ]
 2. As a teacher: [ UserId: 123Student | Password: 123 ]
 3. As a student:[ UserId: 123Teacher | Password: 123 ]
+
+
+## Netlify Link:
+
+# [SchoolSync](https://schoolsync125.netlify.app/teachers/Oj8qSxEooeXHa7eYg8T8)
