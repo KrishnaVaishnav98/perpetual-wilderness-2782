@@ -16,6 +16,8 @@ It is an individual project created by:
 4. Firebase
 
 ![Dashboard](/SchoolSync/src/Images/picture2.png)
+![Teachers](/SchoolSync/src/Images/picture3.png)
+
 
 ## Features
 
@@ -28,7 +30,7 @@ For Admin:
 6. Delete students, teachers
 
 ![All users list](/SchoolSync/src/Images/picture4.png)
-
+![User Profile](/SchoolSync/src/Images/picture8.png)
 
 For Students/Techers:
 1. login
