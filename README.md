@@ -59,9 +59,8 @@ The application allows users to:
 
 ## Login credentials:
 
-1. As an admin: [ UserId: admin | Password: admin ]
-2. As a teacher: [ UserId: 123Student | Password: 123 ]
-3. As a student:[ UserId: 123Teacher | Password: 123 ]
+1. As a teacher: [ UserId: 123Student | Password: 123 ]
+2. As a student:[ UserId: 123Teacher | Password: 123 ]
 
 
 ## Netlify Link:
